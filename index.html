@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Financeiro</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="tela-login" class="login-wrapper">
+        <div class="login-box">
+            <h2>Acesso Restrito</h2>
+            <p>Insira suas credenciais para acessar o painel.</p>
+            
+            <div class="input-group">
+                <label for="nome-usuario">Usuário</label>
+                <input type="text" id="nome-usuario" placeholder="Seu nome">
+            </div>
+            
+            <div class="input-group">
+                <label for="senha-usuario">Senha</label>
+                <input type="password" id="senha-usuario" placeholder="Sua senha secreta">
+            </div>
+            
+            <button class="btn-primario" onclick="fazerLogin()">Acessar Painel</button>
+            <p class="nota-login">*Se for seu primeiro acesso, uma conta será criada com esta senha.</p>
+        </div>
+    </div>
+
+    <div id="tela-sistema" class="dashboard-layout escondido">
+        
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>Lumière</h2>
+                <span>Finanças Pessoais</span>
+            </div>
+            <nav>
+                <a href="#resumo">Visão Geral</a>
+                <a href="#transacoes">Transações</a>
+                <a href="#despesas">Despesas Fixas</a>
+                <a href="#wishlist">Wishlist</a>
+            </nav>
+            <button class="btn-secundario" onclick="fazerLogout()">Sair do Sistema</button>
+        </aside>
+
+        <main class="content">
+            <header>
+                <h1>Bem-vinda, <span id="nome-exibicao"></span>.</h1>
+                <p>Aqui está o resumo da sua vida financeira hoje.</p>
+            </header>
+
+            <section id="resumo" class="grid-cards">
+                <div class="card dark">
+                    <h3>Saldo Atual</h3>
+                    <h2 id="saldo-total">R$ 0,00</h2>
+                </div>
+                <div class="card light">
+                    <h3>Gastos Totais</h3>
+                    <h2 id="gastos-total">R$ 0,00</h2>
+                </div>
+            </section>
+
+            <section id="transacoes" class="grid-duplo">
+                <div class="painel">
+                    <h3>Registrar Movimentação</h3>
+                    <input type="text" id="descricao-transacao" placeholder="Descrição (ex: Uber, Salário...)">
+                    <input type="number" id="valor-transacao" placeholder="Valor (R$)">
+                    <select id="tipo-transacao">
+                        <option value="ganho">Entrada (Receita)</option>
+                        <option value="gasto">Saída (Despesa)</option>
+                    </select>
+                    <button class="btn-primario" onclick="adicionarTransacao()">Registrar</button>
+                </div>
+                
+                <div class="painel">
+                    <h3>Últimas Transações</h3>
+                    <ul id="lista-transacoes" class="lista-itens"></ul>
+                </div>
+            </section>
+
+            <section id="despesas-wishlist" class="grid-duplo">
+                <div class="painel">
+                    <h3>Despesas Fixas (Mensais)</h3>
+                    <div class="input-inline">
+                        <input type="text" id="desc-fixa" placeholder="Ex: Academia, Spotify...">
+                        <input type="number" id="valor-fixa" placeholder="R$">
+                        <button class="btn-primario" onclick="adicionarFixa()">+</button>
+                    </div>
+                    <ul id="lista-fixas" class="lista-itens"></ul>
+                </div>
+
+                <div class="painel">
+                    <h3>Wishlist (Lista de Desejos)</h3>
+                    <div class="input-inline">
+                        <input type="text" id="desc-desejo" placeholder="Ex: Bolsa nova, Viagem...">
+                        <input type="number" id="valor-desejo" placeholder="Meta (R$)">
+                        <button class="btn-primario" onclick="adicionarDesejo()">+</button>
+                    </div>
+                    <ul id="lista-desejos" class="lista-itens"></ul>
+                </div>
+            </section>
+            
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
